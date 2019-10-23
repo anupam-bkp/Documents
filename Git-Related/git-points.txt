@@ -1,0 +1,191 @@
+
+
+--> Download git
+
+--> Download cmder (optional for Windows - commandline for git)
+
+--> Check git downloaded
+  
+      git --version
+
+--> Setting username and email-id for git 
+	
+	git config --global user.name USERNAME
+	git config --global user.email EMAIL
+
+	git config --global http.proxy http://Username:WindowsPassword@proxy:port
+	git config --global http.proxy http://Username:WindowsPassword@fr0-proxylan-vip3.eu.airbus.corp:3128 (To set proxy)
+
+	To see username
+	git config user.name
+
+--> Create a git repository into new folder or into folder which already has project data with branchname master 
+	
+	git init
+
+===============================================================================================================================
+===============================================================================================================================
+--> To commit modified file we need to first add modified file in staging area.
+--> Then commit staged files to local repo
+--> Then push committed files to remote repo
+
+--> To know which files are modified and which files are in staging area
+ 
+     git status
+
+--> To add modified files to staging area
+	
+      git add filename
+      git add . (Add every modified file to staging area)
+
+--> To remove file from staging area
+	
+	git rm --cached filename
+
+--> To commit modified files present in staging area
+	
+	git commit -m "Descriptive msg for a commit"
+
+--> To push committed files to remote repository
+	git push
+
+--> To see the history of commits
+		
+	git log
+	git log --oneline
+
+--> Undoing Commits
+	- Checkout commit
+	- Revert Commit
+	- Reset Commit
+
+	git log --oneline
+		
+	git checkout checksumValue(commit ID) (Back to time of commit ID - Detach from master branch)
+	
+	git checkout master (Back to latest commit - Attach to master branch)
+
+	git revert commitID (Remove a particular commit data from latest commit). 
+		(shift+: wq)
+	
+	git reset commitID ( Reset to back in time to particular commit but doesn't delete changes from repository)
+	git reset commitID --hard  (Reset and delete current changes back to commitID).
+
+
+========================================================================================================================================
+========================================================================================================================================
+
+--> Creating new Branch
+	
+	git branch branchName
+
+--> To show all branches
+
+	git branch -a
+
+--> Switching to different branch
+
+	git checkout branchName
+
+--> Create and switch to newly created branch
+	
+	git checkout -b branchName
+
+--> Deleting an existing branch
+	
+	goto Master branch --> git checkout branchName
+	then delete branch     
+		
+	git branch -d branchName ( If branch is fully merged)
+	git branch -D branchName ( Even if branch is not merged)
+	
+--> Merging sub-branches to Master branch
+	
+	git checkout master (Goto Master branch)
+	git merge branchName
+
+======================================================================================================
+======================================================================================================
+
+--> Pushing local git repository to Github
+	First create a Github account and create a reposiotry on github
+	copy the url provided by Github	
+
+	git push github-repo-url branchName
+
+--> Create alias for github-repo-url
+	
+	git remote add aliasName github-repo-url      (Use origin as aliasName)
+	
+	git push aliasName branchName
+
+
+--> Cloning github repository
+	
+	git clone github-repo-url
+
+--> Cloned github repo already had url set to alias origin
+
+	git remote -v
+
+--> Pulling changes committed by other developers to local repo
+	
+	git pull origin master
+
+--> Pushing branch other than master will create separate branch on Github
+
+	git push origin branchName
+	
+	Create a pull request will request owner to merge this branch to master branch
+
+--> Use fork for contributing to someone else's github project
+
+
+=========================================================================================================
+//Instead of doing a pull always perform this action to bring committed changes to your local workspace:
+
+--> First view the difference between local repo and remote repo 
+	git diff branchName origin/branchName
+
+--> To check which branch is currently active
+	git branch
+
+--> To fetch remote changes of active branch
+	git fetch origin
+
+--> To merge fetched data to local repo
+	
+
+==============================================================================================================
+//TO pull
+
+$ git checkout thebranch
+Already on 'thebranch'
+Your branch and 'origin/thebranch' have diverged,
+and have 23 and 7 different commits each, respectively.
+
+$ git reset --hard origin/thebranch
+HEAD is now at 7639058 Here commit message again...
+
+$ git status
+# On branch thebranch
+nothing to commit (working directory clean)
+
+$ git checkout thebranch
+Already on 'thebranch'
+
+
+====================================
+
+For me the following worked:
+
+(1) First fetch all changes:
+
+$ git fetch --all
+(2) Then reset the master:
+
+$ git reset --hard origin/master
+(3) Pull/update:
+
+$ git pull
+
