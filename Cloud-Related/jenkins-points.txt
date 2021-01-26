@@ -1,0 +1,56 @@
+Accessing Linode Server
+----------------------
+
+1. Open MobaXTerm (SSH Client)
+
+2. Launch a session
+	
+3. SSH to linode server ip address
+	ssh 45.79.127.9
+
+4. password: anu_LINODE1
+
+
+
+Some points related to jenkins ::
+==================================
+
+
+
+1. Start a Jenkins Server
+	
+	[root@li2160-19 ~]# systemctl start jenkins
+
+After starting jenkins open web browser and go to address:
+
+	http://45.79.127.19:8080/
+	
+	Username: anupam
+	Password: anu_JENKINS1
+
+
+2. Stop Jenkins server
+	[root@li2160-19 ~]# systemctl stop jenkins	
+
+
+
+Some Points related to Mysql
+---------------------------
+
+1. Install mysql 
+
+	a. yum -y install @mysql
+	b. mysql --version
+	c. service mysqld start
+		systemctl start mysqld 	// systemctl enable --now mysql.service
+		systemctl enable --now mysqld
+	d. systemctl status mysqld
+	e. mysql_secure_installation
+	f. systemctl status mysqld
+
+root -> anu_MYSQL1
+
+
+
+	
+	
